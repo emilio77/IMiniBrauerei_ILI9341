@@ -1,26 +1,22 @@
-IMiniBrauerei ESP8266 OLED Kombi
-================================
+IMiniBrauerei ESP8266 ILI9341 TFT Display
+=========================================
 
-WIFI Komplettsteuerung ESP OLED Kombi für Brauerei
+WIFI Komplettsteuerung ESP ILI9341 TFT Display Kombi für Brauerei
 
 http://www.schopfschoppe.de/Download.html
-
-Danksagung:
------------
-
-Ein Danke möchte ich glassart sagen, der mich immer kräftig beim Testen
-unterstützt.
 
 Bauteileliste:
 --------------
 
--   ESP8266 OLED Kombi (Siehe Bild unten)i
+-   Wemos D1 Mini / ESP8266 
+
+-   2,8" ILI9341 Display (Siehe Bild unten)i
 
 -   DS18B20 Temperatursensor
 
 -   Widerstand 4,7 KOhm
 
--   bis zu 4 SSR zum Schalten der Funktionen
+-   bis zu 4 SSR oder 4 Relais Board zum Schalten der Funktionen
 
 -   ggf. USB-Kabel und USB-Steckernetzteil ( hat wohl jeder heute was rum zu
     liegen )
@@ -41,7 +37,7 @@ Installation:
 
 -   Auf Config Reiter wechseln
 
--   IMiniBrauerei_ESP_OLED.bin öffnen ( Erstes Zahnrädchen )
+-   IMiniBrauerei_ILI9341_320x240.ino.bin öffnen ( Erstes Zahnrädchen )
 
 -   Auf Operation Reiter wechseln
 
@@ -67,7 +63,7 @@ Bedienung:
 -   Wenn die Config-Seite nicht automatisch öffnet im Browser die Adresse
     192.168.4.1 eingeben
 
--   Auf Config clicken und die WLAN-Daten und die Ports einstellen -
+-   Auf Config klicken und die WLAN-Daten und die Ports einstellen -
     anschliessend "SAVE" drücken
 
 -   Der WEMOS prüft jetzt, ob die Eingaben stimmen, verbindet sich mit dem
@@ -84,15 +80,10 @@ unter seiner IP-Adresse zur Verfügung.
 Bedienung in der Brauerei:
 --------------------------
 
--   In der Brauerei Temperaturmessung "Arduino" wählen.
+-   In der Brauerei Temperaturmessung "IMiniBrauerei/IThermometer" wählen.
 
--   Damit die SSRs schalten auf dem Einstellungs Reiter unter Arduino Relais,
-    die Relais auswählen
-
--   Auf dem Arduino Reiter "LAN/WLAN", die "IP-Adresse" des WEMOS und den
-    passenden "Port-IN" und "Port-OUT" wählen
-
--   "Sensortyp" spielen für das iThermometer keine Rolle.
+-   Auf dem Einstellungs Reiter die "IP-Adresse" des WEMOS und den passenden
+    "Port-IN" und "Port-OUT" wählen
 
 Abschluss:
 ----------
@@ -108,9 +99,9 @@ Datenübertragung erfolgt kabellos per WLAN.
 Zusatzoptionen:
 ---------------
 
--   Wer etwas mehr löten mag kann auf den WEMOS noch ein OLED aufstecken. Das
-    würdee ich sehr empfehlen. Man bekommt damit die Soll, Ist-Temperatur,
+-   Wer etwas mehr löten mag kann an den WEMOS noch ein TFT anschließen. Das
+    würde ich sehr empfehlen. Man bekommt damit die Soll, Ist-Temperatur,
     Netzwerkstatus der Brauerei, der Schaltzustand der SSRs und vieles mehr
     direkt angezeigt.
-    [\>Link\<](http://www.ebay.de/itm/WeMos-D1-mini-WiFi-OLED-0-66-I2C-TFT-Modul-ESP8266-NodeMcu-LUA-/291999752242?hash=item43fc8aa032:g:cRAAAOSwjDZYeWj1)  
+    [\>Link\<](https://www.amazon.de/gp/product/B07QFVBPMX/ref=ppx_yo_dt_b_asin_image_o04_s00?ie=UTF8&psc=1)  
     
