@@ -27,6 +27,11 @@ IMiniBrauerei gem. Schaltplan.jpg verdrahten ( in der Configuration können
 später die Schaltzustände der Ausgänge auch invertiert werden )
 
 ![Schaltplan](Schaltplan.jpg)
+[\>Link zum Display\<](https://www.amazon.de/DollaTek-LCD-Bildschirm-SPI-Modul-Schnittstelle-TFT-Farbbildschirm/dp/B07QFVBPMX)  
+
+![Schaltplan2](Schaltplan2.jpg)
+[\>Link zum Display mit Touch (in meinem Sketch ohne Funktion)\<](https://www.amazon.de/240x320-LCD-Bildschirm-Serial-Port-Modul-ILI9341/dp/B07MXH92RL/ref=dp_prsubs_1?pd_rd_i=B07MXH92RL)  
+[\>Link zum Display ohne Touch\<](https://www.amazon.de/gp/product/B08FJ4NRMK/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)  
 
 Installation:
 -------------
@@ -103,5 +108,5 @@ Zusatzoptionen:
     würde ich sehr empfehlen. Man bekommt damit die Soll, Ist-Temperatur,
     Netzwerkstatus der Brauerei, der Schaltzustand der SSRs und vieles mehr
     direkt angezeigt.
-    [\>Link\<](https://www.amazon.de/gp/product/B07QFVBPMX/ref=ppx_yo_dt_b_asin_image_o04_s00?ie=UTF8&psc=1)  
+    
     
