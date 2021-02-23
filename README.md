@@ -74,6 +74,9 @@ Bedienung:
 -   Der WEMOS prüft jetzt, ob die Eingaben stimmen, verbindet sich mit dem
     angegebenen WLAN-Netzwerk.
 
+-   Wurde der Hotspot gewählt wird ein Netzwerk mit dem Name IMiniBrauerei 
+    und dem Passwort IMiniBrauerei erzeugt. 
+
 Verhalten:
 ----------
 
