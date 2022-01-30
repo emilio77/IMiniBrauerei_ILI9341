@@ -74,6 +74,10 @@ Bedienung:
 -   Der WEMOS prüft jetzt, ob die Eingaben stimmen, verbindet sich mit dem
     angegebenen WLAN-Netzwerk.
 
+-   Optional kann auf der Config-Seite auch der Hot-Spot-Modus gewählt werden. 
+    Dann meldet sich der Wemos nicht am Heimnetzwerk an sondern spannt sein eigenes 
+    Netzwerk mit dem Namen und dem Passwort "IMiniBrauerei" auf. 
+
 Verhalten:
 ----------
 
