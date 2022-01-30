@@ -1,4 +1,4 @@
-// iMiniBrauerei  für ESPs mit eingebautem ILI9341 320x240 von emilio  
+// iMiniBrauerei  für ESPs mit eingebautem ILI9341 320x240 + JSON von emilio  
 // RX : DS18B20 Sensor
 // D4 : Onboard LED
 // D0 : Heizung
@@ -22,7 +22,7 @@
 #include "TJpg_Decoder.h"                            //https://github.com/Bodmer/TJpg_Decoder
 #include "icons.h"
 
-#define Version "2.0.0"
+#define Version "2.1.0"
 
 #define deltaMeldungMillis 5000                      // Sendeintervall an die Brauerei in Millisekunden
 #define DRD_TIMEOUT 10                               // Number of seconds after reset during which a subseqent reset will be considered a double reset.
@@ -76,6 +76,50 @@ bool tft_output(int16_t x, int16_t y, uint16_t w, uint16_t h, uint16_t* bitmap)
   if ( y >= tft.height() ) return 0;     // Stop further decoding as image is running off bottom of screen
   tft.pushImage(x, y, w, h, bitmap);     // This function will clip the image block rendering automatically at the TFT boundaries
   return 1;                              // Return 1 to decode next block
+}
+
+void handleGetValueJSON() {
+  char dummy[8];
+  String message = "{ ";
+  message += "\"temperature\":\"";
+  dtostrf(Temp, 1, 1, dummy);  
+  message += dummy;
+  message += "\",";
+  message += "\"heating\":\"";
+  if (relais[1] == 'H') { message +="Ein"; } else { message +="Aus"; }
+  message += "\",";
+  message += "\"agitator\":\"";
+  if (relais[1] == 'R') { message +="Ein"; } else { message +="Aus"; }
+  message += "\",";
+  message += "\"pump\":\"";
+  if (relais[1] == 'P') { message +="Ein"; } else { message +="Aus"; }
+  message += "\",";
+  message += "\"alarm\":\"";
+  if (relais[1] == 'A') { message +="Ein"; } else { message +="Aus"; }
+  message += "\",";  
+  message += "\"state\":\"";
+  if (state[1]=='o') { message +="OFFLINE "; }        
+  else if (state[1]=='x') { message +="INAKTIV"; }
+  else if (state[1]=='y') { message +="AKTIV"; }
+  else if (state[1]=='z') { message +="PAUSIERT"; }
+  message += "\",";  
+  message +="\"IP\":\"";
+  IPAddress IP = WiFi.localIP();
+  message += IP[0];
+  message += ".";
+  message += IP[1];
+  message += ".";
+  message += IP[2];
+  message += ".";
+  message += IP[3];  
+  message += "\",";  
+  message +="\"PortIn\":\"";
+  message +=localPort; 
+  message += "\",";  
+  message +="\"PortOut\":\"";
+  message +=answerPort; 
+  message += "\" }";
+  server.send(200, "application/json", message);
 }
 
 void Hauptseite()
@@ -437,6 +481,7 @@ void setup() {
       UDPip[3]=255;
       delay(500);  
       server.on("/", Hauptseite);
+      server.on("/json", handleGetValueJSON);
       server.begin();                          // HTTP-Server starten
     }
   } else { 
@@ -453,6 +498,7 @@ void setup() {
     UDPip[3]=255;
     delay(500);  
     server.on("/", Hauptseite);
+    server.on("/json", handleGetValueJSON);
     server.begin();                          // HTTP-Server starten
   } 
 }
@@ -465,7 +511,8 @@ void loop() {
     WiFi.reconnect();
     delay(5000);
     Udp.begin(localPort);
-    server.on("/", Hauptseite);
+    server.on("/", Hauptseite);    
+    server.on("/json", handleGetValueJSON);
     server.begin();            // HTTP-Server starten
   } else{
     if(!deltaMeldungMillis == 0 && jetztMillis - letzteTempMillis > deltaMeldungMillis)
@@ -481,6 +528,7 @@ void loop() {
     RelaisOut();
     DisplayOut();
     Hauptseite();
+    handleGetValueJSON();
     if (jetztMillis < 100000000) {wdt_reset();}             // WatchDog Reset  
   }  
 }
